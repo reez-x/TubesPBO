@@ -16,5 +16,3 @@ public class Pengguna {
         this.nama = nama;
     }
 }
-
-

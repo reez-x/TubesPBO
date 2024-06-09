@@ -18,6 +18,9 @@ public class Main {
                 new Ayam("Ayam Petelur", 45000, 8, 5500, 6, 11000, 3)
         };
 
+        //history transaksi
+        
+
         // Dialog untuk memasukkan nama Pembeli
         String namaPembeli = JOptionPane.showInputDialog("Masukkan nama Pembeli:");
         if (namaPembeli == null || namaPembeli.isEmpty()) {
@@ -30,7 +33,7 @@ public class Main {
 
         // Membuat frame
         JFrame frame = new JFrame("Transaksi Jual Beli Ayam di Pasar");
-        frame.setSize(600, 600);
+        frame.setSize(900, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -39,52 +42,58 @@ public class Main {
         mainPanel.setLayout(new GridLayout(1, 3)); // 1 row, 3 columns
 
         // Membuat informasi untuk masing-masing jenis ayam
-for (Ayam ayamm : ayamList) {
-    JPanel ayamPanel = new JPanel();
-    ayamPanel.setLayout(new GridLayout(4, 1)); // 4 rows, 1 column
-    ayamPanel.setBorder(BorderFactory.createTitledBorder(ayamm.getJenis()));
+        for (Ayam ayamm : ayamList) {
+            JPanel ayamPanel = new JPanel();
+            ayamPanel.setLayout(new GridLayout(4, 1)); // 4 rows, 1 column
+            ayamPanel.setBorder(BorderFactory.createTitledBorder(ayamm.getJenis()));
 
-    JLabel labelStokUtuh = new JLabel("Stok Utuh: " + ayamm.getStok());
-    JLabel labelHargaUtuh = new JLabel("Harga Utuh: Rp " + ayamm.getHarga());
-    JLabel labelStokSayap = new JLabel("Stok Sayap: " + ayamm.getSayap().getStok());
-    JLabel labelHargaSayap = new JLabel("Harga Sayap: Rp " + ayamm.getSayap().getHarga());
-    JLabel labelStokPaha = new JLabel("Stok Paha: " + ayamm.getPaha().getStok());
-    JLabel labelHargaPaha = new JLabel("Harga Paha: Rp " + ayamm.getPaha().getHarga());
+            JLabel labelStokUtuh = new JLabel("Stok Utuh: " + ayamm.getStok());
+            JLabel labelHargaUtuh = new JLabel("Harga Utuh: Rp " + ayamm.getHarga());
+            JLabel labelStokSayap = new JLabel("Stok Sayap: " + ayamm.getSayap().getStok());
+            JLabel labelHargaSayap = new JLabel("Harga Sayap: Rp " + ayamm.getSayap().getHarga());
+            JLabel labelStokPaha = new JLabel("Stok Paha: " + ayamm.getPaha().getStok());
+            JLabel labelHargaPaha = new JLabel("Harga Paha: Rp " + ayamm.getPaha().getHarga());
 
-    ayamPanel.add(labelStokUtuh);
-    ayamPanel.add(labelHargaUtuh);
-    ayamPanel.add(labelStokSayap);
-    ayamPanel.add(labelHargaSayap);
-    ayamPanel.add(labelStokPaha);
-    ayamPanel.add(labelHargaPaha);
+            ayamPanel.add(labelStokUtuh);
+            ayamPanel.add(labelHargaUtuh);
+            ayamPanel.add(labelStokSayap);
+            ayamPanel.add(labelHargaSayap);
+            ayamPanel.add(labelStokPaha);
+            ayamPanel.add(labelHargaPaha);
 
-    mainPanel.add(ayamPanel);
+            mainPanel.add(ayamPanel);
 
         // Panel untuk transaksi
         JPanel transaksiPanel = new JPanel();
         transaksiPanel.setLayout(null);
 
-        JLabel labelPembeli = new JLabel("Nama: " + pembeli.getNama());
-        labelPembeli.setBounds(25, 25, 200, 25);
+        JLabel labelPembeli = new JLabel("Nama :");
+        labelPembeli.setBounds(50, 25, 100, 25);
+        transaksiPanel.add(labelPembeli);
+
+        JLabel labelNamaPembeli = new JLabel(pembeli.getNama());
+        labelNamaPembeli.setBounds(150, 25, 150, 25);
+
+        
 
         // Create a border
-        Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
-        labelPembeli.setBorder(border);
-        labelPembeli.setBackground(Color.YELLOW); // Change the color as needed
-        labelPembeli.setOpaque(true);
+        Border border = BorderFactory.createLineBorder(Color.GRAY, 1);
+        labelNamaPembeli.setBorder(border);
+        labelNamaPembeli.setBackground(Color.WHITE); // Change the color as needed
+        labelNamaPembeli.setOpaque(true);
 
-        transaksiPanel.add(labelPembeli);
+        transaksiPanel.add(labelNamaPembeli);
 
         // ComboBox untuk memilih jenis ayam
         JLabel labelJenisAyam = new JLabel("Jenis Ayam:");
-        labelJenisAyam.setBounds(50, 50, 100, 25);
+        labelJenisAyam.setBounds(50, 75, 100, 25);
         transaksiPanel.add(labelJenisAyam);
 
         JComboBox<String> comboAyam = new JComboBox<>();
         for (Ayam ayam : ayamList) {
             comboAyam.addItem(ayam.getJenis());
         }
-        comboAyam.setBounds(150, 50, 150, 25);
+        comboAyam.setBounds(150, 75, 150, 25);
         transaksiPanel.add(comboAyam);
 
         // ComboBox untuk memilih bagian ayam
@@ -112,11 +121,11 @@ for (Ayam ayamm : ayamList) {
 
         // Button untuk menambah saldo
         JButton buttonTambahSaldo = new JButton("Tambah Saldo");
-        buttonTambahSaldo.setBounds(200, 200, 150, 25);
+        buttonTambahSaldo.setBounds(175, 200, 125, 25);
         transaksiPanel.add(buttonTambahSaldo);
 
         // Label untuk menampilkan saldo
-        JLabel labelSaldo = new JLabel("Saldo: Rp " + pembeli.getSaldo());
+        JLabel labelSaldo = new JLabel("Saldo: Rp. " + pembeli.getSaldo());
         labelSaldo.setBounds(50, 250, 200, 25);
         transaksiPanel.add(labelSaldo);
 
@@ -127,7 +136,7 @@ for (Ayam ayamm : ayamList) {
 
         // Label untuk menampilkan total harga
         JLabel labelTotal = new JLabel("Total Harga: Rp 0");
-        labelTotal.setBounds(50, 310, 200, 25);
+        labelTotal.setBounds(50, 275, 200, 25);
         transaksiPanel.add(labelTotal);
 
         // // Action listener untuk ComboBox jenis ayam
@@ -152,44 +161,61 @@ buttonBeli.addActionListener(new ActionListener() {
 
         switch (bagianAyam) {
             case "Utuh":
-                totalHarga = selectedAyam.getHarga() * jumlah;
-                if (selectedAyam.getStok() >= jumlah) {
+    totalHarga = selectedAyam.getHarga() * jumlah;
+
+            if (selectedAyam.getStok() >= jumlah) {
+                if (pembeli.getSaldo() >= totalHarga) {
                     pembeli.beliAyamUtuh(selectedAyam, jumlah);
                     // Perbarui label stok utuh pada panel ayam yang sesuai
                     JPanel selectedAyamPanel = (JPanel) mainPanel.getComponent(selectedIndexAyam);
                     JLabel labelStokUtuh = (JLabel) selectedAyamPanel.getComponent(0);
                     labelStokUtuh.setText("Stok Utuh: " + selectedAyam.getStok());
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Stok ayam utuh tidak mencukupi.");
+                    JOptionPane.showMessageDialog(frame, "Saldo tidak mencukupi.");
                     return;
                 }
-                break;
+            } else {
+                JOptionPane.showMessageDialog(frame, "Stok ayam utuh tidak mencukupi.");
+                return;
+            }
+            break;
+
             case "Sayap":
                 totalHarga = selectedAyam.getSayap().getHarga() * jumlah;
-                if (selectedAyam.getSayap().getStok() >= jumlah) {
+                if (selectedAyam.getSayap().getStok() >= jumlah ) {
+                    if (pembeli.getSaldo() >= totalHarga) {
                     pembeli.beliSayap(selectedAyam.getSayap(), jumlah);
                     // Perbarui label stok sayap pada panel ayam yang sesuai
                     JPanel selectedAyamPanel = (JPanel) mainPanel.getComponent(selectedIndexAyam);
                     JLabel labelStokSayap = (JLabel) selectedAyamPanel.getComponent(2);
                     labelStokSayap.setText("Stok Sayap: " + selectedAyam.getSayap().getStok());
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Stok sayap tidak mencukupi.");
+                    JOptionPane.showMessageDialog(frame, "Saldo tidak mencukupi.");
                     return;
                 }
-                break;
+            } else {
+                JOptionPane.showMessageDialog(frame, "Stok sayap utuh tidak mencukupi.");
+                return;
+            }
+            break;
             case "Paha":
                 totalHarga = selectedAyam.getPaha().getHarga() * jumlah;
                 if (selectedAyam.getPaha().getStok() >= jumlah) {
+                    if (pembeli.getSaldo() >= totalHarga) {
                     pembeli.beliPaha(selectedAyam.getPaha(), jumlah);
                     // Perbarui label stok paha pada panel ayam yang sesuai
                     JPanel selectedAyamPanel = (JPanel) mainPanel.getComponent(selectedIndexAyam);
                     JLabel labelStokPaha = (JLabel) selectedAyamPanel.getComponent(4);
                     labelStokPaha.setText("Stok Paha: " + selectedAyam.getPaha().getStok());
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Stok paha tidak mencukupi.");
+                    JOptionPane.showMessageDialog(frame, "Saldo tidak mencukupi.");
                     return;
                 }
-                break;
+            } else {
+                JOptionPane.showMessageDialog(frame, "Stok paha tidak mencukupi.");
+                return;
+            }
+            break;
         }
 
         labelTotal.setText("Total Harga: Rp " + totalHarga);
