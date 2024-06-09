@@ -21,7 +21,4 @@ public class Sayap {
         this.stok -= jumlah;
     }
 
-    public void tambahStok(int jumlah) {
-        this.stok += jumlah;
-    }
 }
